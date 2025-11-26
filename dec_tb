@@ -1,0 +1,57 @@
+#! /d/a/fpga-toolchain-build/fpga-toolchain-build/iverilog/_install/bin/vvp
+:ivl_version "11.0 (stable)" "(d3b0992)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "C:\PROGRA~3\CHOCOL~1\lib\iverilog\tools\lib\ivl\system.vpi";
+:vpi_module "C:\PROGRA~3\CHOCOL~1\lib\iverilog\tools\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\PROGRA~3\CHOCOL~1\lib\iverilog\tools\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\PROGRA~3\CHOCOL~1\lib\iverilog\tools\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\PROGRA~3\CHOCOL~1\lib\iverilog\tools\lib\ivl\va_math.vpi";
+S_00000215bd5f9c90 .scope module, "tb_instruction_decoder" "tb_instruction_decoder" 2 1;
+ .timescale 0 0;
+v00000215bd4b9d90_0 .net "imm", 3 0, L_00000215bd4b3900;  1 drivers
+v00000215bd5fbe70_0 .var "instr", 15 0;
+v00000215bd5fbf10_0 .net "opcode", 3 0, L_00000215bd4b3720;  1 drivers
+v00000215bd5fa5f0_0 .net "reg1", 3 0, L_00000215bd4b34a0;  1 drivers
+v00000215bd4b3ea0_0 .net "reg2", 3 0, L_00000215bd4b3220;  1 drivers
+S_00000215bd5fbce0 .scope module, "uut" "instruction_decoder" 2 9, 3 1 0, S_00000215bd5f9c90;
+ .timescale 0 0;
+    .port_info 0 /INPUT 16 "instr";
+    .port_info 1 /OUTPUT 4 "opcode";
+    .port_info 2 /OUTPUT 4 "reg1";
+    .port_info 3 /OUTPUT 4 "reg2";
+    .port_info 4 /OUTPUT 4 "imm";
+v00000215bd5f6f10_0 .net "imm", 3 0, L_00000215bd4b3900;  alias, 1 drivers
+v00000215bd5fd3f0_0 .net "instr", 15 0, v00000215bd5fbe70_0;  1 drivers
+v00000215bd5f9e20_0 .net "opcode", 3 0, L_00000215bd4b3720;  alias, 1 drivers
+v00000215bd5f89a0_0 .net "reg1", 3 0, L_00000215bd4b34a0;  alias, 1 drivers
+v00000215bd5f87e0_0 .net "reg2", 3 0, L_00000215bd4b3220;  alias, 1 drivers
+L_00000215bd4b3720 .part v00000215bd5fbe70_0, 12, 4;
+L_00000215bd4b34a0 .part v00000215bd5fbe70_0, 8, 4;
+L_00000215bd4b3220 .part v00000215bd5fbe70_0, 4, 4;
+L_00000215bd4b3900 .part v00000215bd5fbe70_0, 0, 4;
+    .scope S_00000215bd5f9c90;
+T_0 ;
+    %vpi_call 2 18 "$display", "Starting Decoder Test" {0 0 0};
+    %pushi/vec4 4384, 0, 16;
+    %store/vec4 v00000215bd5fbe70_0, 0, 16;
+    %delay 10, 0;
+    %vpi_call 2 21 "$display", "ADD R1,R2  opcode=%d reg1=%d reg2=%d imm=%d", v00000215bd5fbf10_0, v00000215bd5fa5f0_0, v00000215bd4b3ea0_0, v00000215bd4b9d90_0 {0 0 0};
+    %pushi/vec4 25349, 0, 16;
+    %store/vec4 v00000215bd5fbe70_0, 0, 16;
+    %delay 10, 0;
+    %vpi_call 2 24 "$display", "XORENC R3 key=5  opcode=%d reg1=%d reg2=%d imm=%d", v00000215bd5fbf10_0, v00000215bd5fa5f0_0, v00000215bd4b3ea0_0, v00000215bd4b9d90_0 {0 0 0};
+    %pushi/vec4 28684, 0, 16;
+    %store/vec4 v00000215bd5fbe70_0, 0, 16;
+    %delay 10, 0;
+    %vpi_call 2 27 "$display", "JMP addr=12 opcode=%d reg1=%d reg2=%d imm=%d", v00000215bd5fbf10_0, v00000215bd5fa5f0_0, v00000215bd4b3ea0_0, v00000215bd4b9d90_0 {0 0 0};
+    %vpi_call 2 29 "$display", "Decoder Test Completed" {0 0 0};
+    %vpi_call 2 30 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "tests/tb_instruction_decoder.v";
+    "src/instruction_decoder.v";

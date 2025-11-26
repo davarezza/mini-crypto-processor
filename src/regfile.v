@@ -1,30 +1,29 @@
-module regfile #(
-    parameter REG_WIDTH = 32,
-    parameter REG_COUNT = 16
-)(
+module regfile(
     input clk,
-    input we,                       // Write enable
-    input [$clog2(REG_COUNT)-1:0] w_addr, // Write address
-    input [REG_WIDTH-1:0] w_data,         // Write data
-    
-    input [$clog2(REG_COUNT)-1:0] r_addr1, // Read port 1 address
-    input [$clog2(REG_COUNT)-1:0] r_addr2, // Read port 2 address
-    
-    output [REG_WIDTH-1:0] r_data1,        // Read port 1 data
-    output [REG_WIDTH-1:0] r_data2         // Read port 2 data
+    input reset,
+    input reg_write,
+    input [3:0] rs1,
+    input [3:0] rs2,
+    input [3:0] rd,
+    input [7:0] write_data,
+    output reg [7:0] out_rs1,
+    output reg [7:0] out_rs2
 );
 
-    reg [REG_WIDTH-1:0] regs [0:REG_COUNT-1];
+    reg [7:0] regs [0:15];
+    integer i;    // letakkan di sini
 
-    // Read asynchronous
-    assign r_data1 = regs[r_addr1];
-    assign r_data2 = regs[r_addr2];
-
-    // Write synchronous
-    always @(posedge clk) begin
-        if (we) begin
-            regs[w_addr] <= w_data;
+    always @(posedge clk or posedge reset) begin
+        if (reset) begin
+            for (i = 0; i < 16; i = i + 1) regs[i] <= 0;
+        end else if (reg_write) begin
+            regs[rd] <= write_data;
         end
+    end
+
+    always @(*) begin
+        out_rs1 = regs[rs1];
+        out_rs2 = regs[rs2];
     end
 
 endmodule
