@@ -1,0 +1,13 @@
+src/alu.v
+src/control_unit.v
+src/instruction_decoder.v
+src/pc.v
+src/regfile.v
+src/cpu.v
+src/utils/clock_divider.v
+src/utils/mux.v
+src/memory/data_mem.v
+src/memory/instr_mem.v
+src/encryption/xor_enc.v
+src/encryption/keygen.v
+src/encryption/modexp.v

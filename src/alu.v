@@ -7,14 +7,14 @@ module alu(
 );
 
     always @(*) begin
-        if (!enable) result = 0;
+        if (!enable) result = 8'h00;
         else begin
             case(opcode)
                 4'b0001: result = a + b;
                 4'b0010: result = a - b;
                 4'b0011: result = a ^ b;
                 4'b0100: result = b;
-                default: result = 0;
+                default: result = 8'h00;
             endcase
         end
     end

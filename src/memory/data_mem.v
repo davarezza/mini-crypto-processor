@@ -8,12 +8,21 @@ module data_mem(
 );
 
     reg [7:0] mem [0:255];
+    integer i;
+
+    initial begin
+        for (i = 0; i < 256; i = i + 1) mem[i] = 8'h00;
+    end
 
     always @(posedge clk) begin
-        if (mem_write)
+        if (mem_write) begin
             mem[address] <= write_data;
-
-        if (mem_read)
-            read_data <= mem[address];
+        end
     end
+
+    always @(*) begin
+        if (mem_read) read_data = mem[address];
+        else read_data = 8'h00;
+    end
+
 endmodule

@@ -6,7 +6,7 @@ module pc(
 );
 
     always @(posedge clk or posedge reset) begin
-        if (reset) pc <= 0;
+        if (reset) pc <= 8'h00;
         else if (pc_enable) pc <= pc + 1;
     end
 
